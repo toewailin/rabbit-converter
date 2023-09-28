@@ -1,0 +1,165 @@
+<html>
+  <head>
+    <title>Zawgyi to Unicode</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="rabbit.ico" type="image/x-icon" sizes="37x59" />
+    <script src="rabbit.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <!-- <link
+      rel="stylesheet"
+      href="https://fonts.google.com/noto/specimen/Noto+Sans+Myanmar"
+    />
+    <link
+      rel="stylesheet"
+      href="http://mmwebfonts.comquas.com/fonts/?font=zawgyi"
+    />  -->
+    <script type="text/javascript">
+      function clearText() {
+        document.getElementById("unicode").value = "";
+        document.getElementById("zawgyi").value = "";
+      }
+    </script>
+  </head>
+  <body>
+    <div id="container">
+      <header>
+        <img src="rabbit.png" alt="Rabbit" width="56 px" height="100px" />
+        <h2>Zawgyi to Unicode</h2>
+      </header>
+
+      <div id="textContainer">
+        <section id="Zawgyi">
+          <h3 class="styled-text">
+            <span class="one">Z</span>
+            <span class="two">a</span>
+            <span class="three">w</span>
+            <span class="four">g</span>
+            <span class="five">y</span>
+            <span class="six">i</span>
+          </h3>
+          <textarea
+            rows="28"
+            id="zawgyi"
+            onfocus="handleOnFocus(this)"
+            onblur="handleOnBlur()"
+          ></textarea>
+        </section>
+
+        <section id="Unicode">
+          <h3 class="styled-text">
+            <span class="one">U</span>
+            <span class="two">n</span>
+            <span class="three">i</span>
+            <span class="four">c</span>
+            <span class="five">o</span>
+            <span class="six">d</span>
+            <span class="seven">e</span>
+          </h3>
+          <textarea
+            rows="28"
+            id="unicode"
+            onfocus="handleOnFocus(this)"
+            onblur="handleOnBlur()"
+          ></textarea>
+        </section>
+      </div>
+      <div id="textContainer">
+        <section id="buttons">
+          <input
+            class="zawgyi-button-style"
+            type="button"
+            value="Copy Zawgyi"
+            onclick="copyZawgyi()"
+          />
+          <input
+            class="clear-button-style clear"
+            type="button"
+            value="Clear Text"
+            onclick="clearText()"
+          />
+          <input
+            class="unicode-button-style"
+            type="button"
+            value="Copy Unicode"
+            onclick="copyUnicode()"
+          />
+        </section>
+      </div>
+      <footer>
+        <p>
+          &copy; 2023
+          <a href="https://github.com/Rabbit-Converter/Rabbit">Rabbit</a> |
+          Zawgyi to Unicode Converter
+        </p>
+      </footer>
+    </div>
+
+    <script>
+      var textFieldInFocus;
+      function handleOnFocus(form_element) {
+        textFieldInFocus = form_element;
+      }
+      function handleOnBlur() {
+        textFieldInFocus = null;
+      }
+
+      var unicode = document.getElementById("unicode");
+      var zawgyi = document.getElementById("zawgyi");
+
+      onchangeHandler(unicode, zawgyi, "uni2zg");
+      onchangeHandler(zawgyi, unicode, "zg2uni");
+
+      function converter(textField, tochangeField, toconv) {
+        if (tochangeField != textFieldInFocus) {
+          if (toconv == "uni2zg") {
+            tochangeField.value = Rabbit.uni2zg(textField.value);
+          } else {
+            tochangeField.value = Rabbit.zg2uni(textField.value);
+          }
+        }
+      }
+
+      function onchangeHandler(textField, tochangeField, toconv) {
+        if (textField.addEventListener) {
+          textField.addEventListener(
+            "input",
+            function () {
+              converter(textField, tochangeField, toconv);
+            },
+            false
+          );
+        } else if (textField.attachEvent) {
+          textField.attachEvent("onpropertychange", function () {
+            // IE
+            converter(textField, tochangeField, toconv);
+          });
+        }
+      }
+
+      function copyZawgyi() {
+        /* Get the text field */
+        var copyText = document.getElementById("zawgyi");
+
+        /* Select the text field */
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+        /* Copy the text inside the text field */
+        document.execCommand("copy");
+      }
+
+      function copyUnicode() {
+        /* Get the text field */
+        var copyText = document.getElementById("unicode");
+
+        /* Select the text field */
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+        /* Copy the text inside the text field */
+        document.execCommand("copy");
+      }
+    </script>
+  </body>
+</html>
