@@ -1,5 +1,7 @@
 # Zawgyi to Unicode Font Converter
 
+![Project Logo/Icon](rabbit.png)
+
 This web page allows you to convert text from Zawgyi font encoding to Unicode font encoding for the Burmese language. It provides a simple and user-friendly interface for converting text between these two popular Burmese font encodings.
 
 ## Features
@@ -16,6 +18,15 @@ This web page allows you to convert text from Zawgyi font encoding to Unicode fo
 3. Click the "Convert" button to convert the text to Unicode.
 4. The converted text will be displayed in the output box.
 5. You can click the "Copy" button to copy the converted text to your clipboard.
+
+## Usage XAMPP
+
+1. Paste to c:\xampp\htdocs
+2. http://localhost/rabbit
+
+## Demo
+
+[Local Live Demo](http://localhost/rabbit)
 
 ## Contributions
 
